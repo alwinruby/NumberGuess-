@@ -1,16 +1,36 @@
-# This is a sample Python script.
+from random import randint
 
-# Press ⇧F10 to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+def computer_number(min_num,max_num):
+    '''
+    function that generates a random number based on the range passed as args.
+    returns random int
+    '''
+    return randint(min_num,max_num)
 
+def player_guess(min_num,max_num):
+    '''
+    function that asks the player for a number.
+    returns random int
+    '''
+    user_input = int(input(f'guess a number between {min_num} and {max_num}: '))
+    return user_input
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def play():
+    #define high and low guessing range
+    low = 0
+    high = 10
 
+    #get input from computer and player
+    computer_choice = computer_number(low,high)
+    player_choice = player_guess(low,high)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    #loop until player guesses the number
+    while player_choice != computer_choice:
+        if player_choice>computer_choice:
+            player_choice = int(input('Number is too high, try again: '))
+        elif player_choice<computer_choice:
+            player_choice = int(input('Number is too low, try again: '))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print (f'Congratulation! You managed to guess the number {computer_choice}')
+
+play()
